@@ -1,0 +1,42 @@
+{
+  "name": "learnexpress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss -o src/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khoikevin2903/BE-Web-ATTT-Nodejs.git"
+  },
+  "keywords": [
+    "kevin",
+    "khoikevin",
+    "khoi",
+    "nodejs",
+    "nodejs"
+  ],
+  "author": "khoikevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khoikevin2903/BE-Web-ATTT-Nodejs/issues"
+  },
+  "homepage": "https://github.com/khoikevin2903/BE-Web-ATTT-Nodejs#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.7",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-slug-generator": "^1.0.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}
