@@ -10,6 +10,7 @@ const isAuth = async (req, res, next) => {
     try {
         const decoded = await jwtHelper.verifyToken(token, "" + accessTokenSecret);
         req.jwtDecoded = decoded;
+        req.token = token;
         next();
     } catch (error) {
         console.log(error);

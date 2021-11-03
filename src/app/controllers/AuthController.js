@@ -57,12 +57,6 @@ class AuthController {
                         });
                         token.save();
                         return res.json({
-                            info: {
-                                _id: user._id,
-                                firstName: user.firstName,
-                                lastName: user.lastName,
-                                role: user.role
-                            },
                             accessToken: accessToken,
                             refreshToken: refreshToken
                         });

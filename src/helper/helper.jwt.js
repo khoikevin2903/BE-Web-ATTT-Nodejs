@@ -7,6 +7,8 @@ let generateToken = (user, secretSignature, tokenLife) => {
             _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
+            role: user.role,
+            email: user.email,
         }
 
         // Thực hiện ký và tạo token
@@ -21,6 +23,7 @@ let generateToken = (user, secretSignature, tokenLife) => {
                 if (error) {
                     return reject(error);
                 }
+                console.log(token)
                 resolve(token);
             });
     });
