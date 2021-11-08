@@ -9,6 +9,15 @@ const refreshTokenLife = process.env.REFRESH_TOKEN_LIFE || "3650d";
 const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "refreshSecret";
 
 class MeController {
+    changeBlockUser(req, res, next) {
+        console.log(req.body.isBlock)
+        User.updateOne({ _id: req.params.id }, { isBlock: req.body.isBlock })
+            .then(user => {
+                console.log(user)
+                return res.json("Successfully!!!")
+            })
+            .catch(next);
+    }
 
     changePassword(req, res, next) {
         User.findById(req.params.id)
@@ -75,7 +84,9 @@ class MeController {
     storeMusic(req, res, next) {
         const user = req.jwtDecoded;
         Music.find({ idUser: user.data._id })
-            .then(musics => res.json(musics.reverse()))
+            .then(musics => {
+                res.json(musics.reverse())
+            })
             .catch(next)
     }
 

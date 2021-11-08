@@ -48,19 +48,27 @@ class AuthController {
         try {
             User.findOne({ username: req.body.username })
                 .then(async user => {
-                    if (user.password === req.body.password) {
-                        const accessToken = await jwtHelper.generateToken(user, "" + accessTokenSecret, accessTokenLife);
-                        const refreshToken = await jwtHelper.generateToken(user, "" + refreshTokenSecret, refreshTokenLife);
-                        const token = new Token({
-                            accessToken: accessToken,
-                            refreshToken: refreshToken
-                        });
-                        token.save();
-                        return res.json({
-                            accessToken: accessToken,
-                            refreshToken: refreshToken
-                        });
-                    } else return res.json({ err: "Incorrect password!!!" });
+                    console.log(user)
+                    if(!user.isBlock) {
+                        if (user.password === req.body.password) {
+                            const accessToken = await jwtHelper.generateToken(user, "" + accessTokenSecret, accessTokenLife);
+                            const refreshToken = await jwtHelper.generateToken(user, "" + refreshTokenSecret, refreshTokenLife);
+                            const token = new Token({
+                                accessToken: accessToken,
+                                refreshToken: refreshToken
+                            });
+                            token.save();
+                            return res.json({
+                                accessToken: accessToken,
+                                refreshToken: refreshToken
+                            });
+                        } else return res.json({ err: "Incorrect password!!!" });
+                    }
+                    else {
+                        console.log('ok')
+                        return res.status(404).json({ err: "Account has been locked!!!" });
+                    }
+                   
                 })
                 .catch(() => {
                     return res.json({ err: "User not found!!!" })

@@ -23,7 +23,6 @@ let generateToken = (user, secretSignature, tokenLife) => {
                 if (error) {
                     return reject(error);
                 }
-                console.log(token)
                 resolve(token);
             });
     });

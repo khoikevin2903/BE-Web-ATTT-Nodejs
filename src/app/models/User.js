@@ -10,6 +10,7 @@ const User = new Schema({
     password: { type: String, required: true },
     email: { type: String, required: true },
     role: { type: String, default: 'USER' },
+    isBlock: {type: Boolean, default: false}
 });
 
 // Add plugin

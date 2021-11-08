@@ -16,11 +16,7 @@ class MusicsController {
         formData.image = `https://i.ytimg.com/vi/${formData.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDbtfmz9fh3vCcCKtL_nZwfUYpyWw`
         const music = new Music(formData)
         music.save()
-            .then(() => {
-                Music.find({ idUser: req.jwtDecoded.data._id })
-                    .then(musics => res.json(musics.reverse()))
-                    .catch(next)
-            })
+            .then(() => res.json({message: "update successfully!"}))
             .catch(() => {
                 return res.json({ err: 'Music creation failed!!!' })
             });
@@ -29,21 +25,21 @@ class MusicsController {
     // [GET] /musics/:id/edit
     edit(req, res, next) {
         Music.findById(req.params.id)
-            .then(music => res.json(mongooseToObject(music)))
+            .then(() => res.json({message: "update successfully!"}))
             .catch(next);
     }
 
     // [PUT] /musics/:id
     update(req, res, next) {
         Music.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.json(''))
+            .then(() => res.json({message: "update successfully!"}))
             .catch(next);
     }
 
     // [Delete] /musics/:id
     destroy(req, res, next) {
         Music.delete({ _id: req.params.id })
-            .then(() => res.json(''))
+            .then(() => res.json({message: 'Delete successful!'}))
             .catch(next);
     }
 
