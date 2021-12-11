@@ -25,7 +25,7 @@ class MeController {
                 if (user.password === req.body.currentPassword) {
                     User.updateOne({ _id: req.params.id }, { password: req.body.newPassword })
                         .then(() => {
-                            return res.json("Successfully!!!")
+                            return res.json("Change password successfully!!!")
                         })
                         .catch(next);
                 }

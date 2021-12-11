@@ -16,7 +16,7 @@ class MusicsController {
         formData.image = `https://i.ytimg.com/vi/${formData.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDbtfmz9fh3vCcCKtL_nZwfUYpyWw`
         const music = new Music(formData)
         music.save()
-            .then(() => res.json({message: "update successfully!"}))
+            .then(() => res.json({message: "create successful song!"}))
             .catch(() => {
                 return res.json({ err: 'Music creation failed!!!' })
             });
@@ -25,14 +25,14 @@ class MusicsController {
     // [GET] /musics/:id/edit
     edit(req, res, next) {
         Music.findById(req.params.id)
-            .then(() => res.json({message: "update successfully!"}))
+            .then(() => res.json({message: "Update successfully!"}))
             .catch(next);
     }
 
     // [PUT] /musics/:id
     update(req, res, next) {
         Music.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.json({message: "update successfully!"}))
+            .then(() => res.json({message: "Successful song editing!"}))
             .catch(next);
     }
 

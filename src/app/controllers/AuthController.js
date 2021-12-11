@@ -22,7 +22,7 @@ class AuthController {
                             })
                             .catch(next)
                     }
-                    return res.json({response: "Login account already exists!"});
+                    else return res.json({response: "Login account already exists!"});
                 })
                 .catch(next);
         } catch (error) {
@@ -45,10 +45,10 @@ class AuthController {
 
     // [POST] /auth/login
     login(req, res, next) {
+        console.log(req.body)
         try {
             User.findOne({ username: req.body.username })
                 .then(async user => {
-                    console.log(user)
                     if(!user.isBlock) {
                         if (user.password === req.body.password) {
                             const accessToken = await jwtHelper.generateToken(user, "" + accessTokenSecret, accessTokenLife);
